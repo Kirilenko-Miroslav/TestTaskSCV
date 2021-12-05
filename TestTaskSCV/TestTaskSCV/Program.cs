@@ -32,7 +32,7 @@ namespace TestTaskSCV
 
             using (FileStream fs = File.Create(path + "\\out.csv"))
             {
-                byte[] info = new UTF8Encoding(true).GetBytes(names.ToString() + $"\n Number of visits of this control area: {countVisits}");
+                byte[] info = new UTF8Encoding(true).GetBytes(names + $"\n Number of visits of this control area: {countVisits}");
                 fs.Write(info, 0, info.Length);
             }
         }
@@ -42,7 +42,7 @@ namespace TestTaskSCV
 
             using (StreamReader reader = new StreamReader(File.OpenRead(path)))
             {
-                var previousCar = new Car();
+                Car previousCar = null;
                 while ((line = await reader.ReadLineAsync()) != null && previousCar == null)//ищем первую валидную запись которую сможем привести к типу Car
                 {
                     try

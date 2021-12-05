@@ -22,12 +22,6 @@ namespace TestTaskSCV
             str = str.Substring(str.IndexOf(";") + 1);
             lat = Double.Parse(str, formatter);
         }
-        public Car(){ }
-        public bool IsBetween(DateTime start, DateTime end)
-        {
-            if (date >= start && date <= end)
-                return true;
-            return false;
-        }
+        public bool IsBetween(DateTime start, DateTime end) => date >= start && date <= end;
     }
 }

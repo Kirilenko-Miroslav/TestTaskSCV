@@ -16,11 +16,6 @@ namespace TestTaskSCV
                 return true;
             return false;
         }
-        public bool IsCrossing(Point p1, Point p2)
-        {
-            if ((IsInside(p1) && !IsInside(p2)) || (!IsInside(p1) && IsInside(p2)))
-                return true;
-            return false;
-        }
+        public bool IsCrossing(Point p1, Point p2) => (IsInside(p1) && !IsInside(p2)) || (!IsInside(p1) && IsInside(p2));
     }
 }
