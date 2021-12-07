@@ -14,8 +14,8 @@ namespace TestTaskSCV
         {
             const double gpsEarthRadius = 6371000;
             const double pi = Math.PI;
-            var latRad1 = lon * pi / 180;
-            var lonRad1 = lat * pi / 180;
+            var latRad1 = lat * pi / 180;
+            var lonRad1 = lon * pi / 180;
             var latRad2 = point.lat * pi / 180;
             var lonRad2 = point.lon * pi / 180;
             var angle = Math.Cos(latRad1) * Math.Cos(latRad2) * Math.Pow(Math.Sin(((lonRad1 - lonRad2)

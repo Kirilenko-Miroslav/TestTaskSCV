@@ -9,20 +9,23 @@ namespace TestTaskSCV
     internal class Program
     {
         private static int countVisits = 0;//количество посещений (можно было конечно создать внутри метода и передавать как ref)
+
         private static readonly DateTime dateFrom = DateTime.Parse("2016.04.01 00:00:00");//начальная дата проверки
         private static readonly DateTime dateTo = DateTime.Parse("2016.10.02 00:00:00");//конечная дата проверки
+
+        private static Circle circle = new Circle() {lon = 32.02394, lat = 54.8707, rad = 5000.0 };//заданный круг
+
         static void Main(string[] args)
         {
             var path = Directory.GetCurrentDirectory();
             var files = Directory.GetFiles(path, "*.csv");//все .scv файлы
             StringBuilder names = new StringBuilder(); //названия файлов которые считываем
-            var circle = new Circle() { lon = 32.02394, lat = 54.8707, rad = 5000.0 };//заданный круг
             List<Task> tasks = new List<Task>();
             foreach (var file in files)
             {
                 if (Path.GetFileName(file) != "out.csv") //выходной файл не проверяем
                 {
-                    tasks.Add(Parse(file, circle));
+                    tasks.Add(Parse(file));
                     names.AppendLine(Path.GetFileName(file));
                 }
             }
@@ -36,7 +39,7 @@ namespace TestTaskSCV
                 fs.Write(info, 0, info.Length);
             }
         }
-        static async Task Parse(string path, Circle circle)
+        static async Task Parse(string path)
         {
             string line;
 
@@ -49,6 +52,7 @@ namespace TestTaskSCV
                     {
                         var valid = new Car(line);
                         previousCar = valid;
+                        break;
                     }
                     catch
                     {
